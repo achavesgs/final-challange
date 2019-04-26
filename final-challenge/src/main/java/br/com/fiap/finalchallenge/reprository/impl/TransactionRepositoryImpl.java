@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.fiap.finalchallenge.json.TransactionPostJson;
 import br.com.fiap.finalchallenge.model.Transaction;
 import br.com.fiap.finalchallenge.reprository.TransactionRepository;
 
@@ -12,8 +13,13 @@ import br.com.fiap.finalchallenge.reprository.TransactionRepository;
 public class TransactionRepositoryImpl implements TransactionRepository{
 	
 	private List<Transaction> transactions = new ArrayList<Transaction>();
+	
 
-	public void saveTransaction(Transaction transaction) {
-		transactions.add(transaction);
+	public List<Transaction> saveTransaction(TransactionPostJson bodyJson) {
+		Transaction transaction = new Transaction();
+		transaction.setAmount(bodyJson.getAmount());
+		transaction.setTimestamp(bodyJson.getTimestamp());
+		this.transactions.add(transaction);
+		return this.transactions;
 	}
 }

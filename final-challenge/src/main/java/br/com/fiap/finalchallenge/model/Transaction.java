@@ -1,9 +1,14 @@
 package br.com.fiap.finalchallenge.model;
 
+import java.time.LocalDateTime;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class Transaction {
 
+	@ApiModelProperty( notes = "The transaction date")
+	private LocalDateTime date;
+	
 	@ApiModelProperty( notes = "The amount value")
 	private double amount;
 	
@@ -11,6 +16,12 @@ public class Transaction {
 	private long timestamp;
 	
 	
+	public LocalDateTime getDate() {
+		return date;
+	}
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
 	public double getAmount() {
 		return amount;
 	}

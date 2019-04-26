@@ -1,8 +1,13 @@
 package br.com.fiap.finalchallenge.model;
 
+import java.time.LocalDateTime;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class Statistic {
+	
+	@ApiModelProperty( notes = "The statisti date")
+	private LocalDateTime date;
 	
 	@ApiModelProperty( notes = "The transaction total sum")
 	private double sum;
@@ -19,6 +24,13 @@ public class Statistic {
 	@ApiModelProperty( notes = "The total transaction quantity")
 	private long count;
 	
+	
+	public LocalDateTime getDate() {
+		return date;
+	}
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
 	public double getSum() {
 		return sum;
 	}
