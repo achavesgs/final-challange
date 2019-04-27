@@ -6,5 +6,7 @@ import br.com.fiap.finalchallenge.json.TransactionPostJson;
 import br.com.fiap.finalchallenge.model.Transaction;
 
 public interface TransactionRepository {
-	public List<Transaction> saveTransaction(TransactionPostJson bodyJson);
+	void saveTransaction(TransactionPostJson bodyJson);
+	
+	Transaction getCurrentTransaction();
 }

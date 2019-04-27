@@ -12,14 +12,17 @@ import br.com.fiap.finalchallenge.reprository.TransactionRepository;
 @Repository
 public class TransactionRepositoryImpl implements TransactionRepository{
 	
-	private List<Transaction> transactions = new ArrayList<Transaction>();
+	private Transaction transaction = new Transaction();
 	
-
-	public List<Transaction> saveTransaction(TransactionPostJson bodyJson) {
-		Transaction transaction = new Transaction();
+	@Override
+	public void saveTransaction(TransactionPostJson bodyJson) {
 		transaction.setAmount(bodyJson.getAmount());
 		transaction.setTimestamp(bodyJson.getTimestamp());
-		this.transactions.add(transaction);
-		return this.transactions;
+	}
+
+
+	@Override
+	public Transaction getCurrentTransaction() {
+		return this.transaction;
 	}
 }

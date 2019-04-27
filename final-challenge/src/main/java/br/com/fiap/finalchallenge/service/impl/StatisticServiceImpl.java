@@ -38,7 +38,7 @@ public class StatisticServiceImpl implements StatisticService {
 	// Space Complexity: O(${windowInMs} / 1000 + ${removeExpiredStatisticsInMs} / 1000) -> O(1)
 	private Queue<Long> statisticTimestamps;
 	
-	@Value("${statisticService.windowInMs}")
+//	@Value("${statisticService.windowInMs}")
 	private Long windowInMs;
 	
 	public StatisticServiceImpl() {

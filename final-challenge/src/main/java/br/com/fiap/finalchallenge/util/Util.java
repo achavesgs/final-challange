@@ -9,7 +9,7 @@ public class Util {
 	
 	
 	public static boolean isValid(long timestamp) {
-		if((System.currentTimeMillis() - timestamp) <= 60000) {
+		if((System.currentTimeMillis() - timestamp) <= 600000) {
 			return true;
 		
 		}
