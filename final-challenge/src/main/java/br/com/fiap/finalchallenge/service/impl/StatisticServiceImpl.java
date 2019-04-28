@@ -38,7 +38,7 @@ public class StatisticServiceImpl implements StatisticService {
 	// Space Complexity: O(${windowInMs} / 1000 + ${removeExpiredStatisticsInMs} / 1000) -> O(1)
 	private Queue<Long> statisticTimestamps;
 	
-//	@Value("${statisticService.windowInMs}")
+	@Value("${statisticService.windowInMs}")
 	private Long windowInMs;
 	
 	public StatisticServiceImpl() {
@@ -103,11 +103,11 @@ public class StatisticServiceImpl implements StatisticService {
 	@Override
 	public void add(Transaction transaction) throws TransactionExpiredException, TransactionOutOfFutureWindow {
 		
-		Long currentTimestamp = Util.converToTimeStamp(LocalDateTime.now());
-		Long transactionTimestamp = Util.converToTimeStamp(transaction.getDate());
+		Long currentTimestamp = System.currentTimeMillis();//Util.converToTimeStamp(LocalDateTime.now());
+		Long transactionTimestamp = transaction.getTimestamp(); //Util.converToTimeStamp(transaction.getDate());
 		
 		if (transactionTimestamp + windowInMs < currentTimestamp) throw new TransactionExpiredException();
-		if (currentTimestamp + windowInMs < transactionTimestamp) throw new TransactionOutOfFutureWindow();
+//		if (currentTimestamp + windowInMs < transactionTimestamp) throw new TransactionOutOfFutureWindow();
 		
 		synchronized(LOCK) {
 			
@@ -129,8 +129,12 @@ public class StatisticServiceImpl implements StatisticService {
 					this.statisticTimestamps.add(i);
 				}
 	
-				if (transaction.getAmount() > statistic.getMax()) statistic.setMax(transaction.getAmount());
-				if (transaction.getAmount() < statistic.getMin()) statistic.setMin(transaction.getAmount());
+				if (transaction.getAmount() > statistic.getMax()) {
+					statistic.setMax(transaction.getAmount());
+				}
+				if (transaction.getAmount() < statistic.getMin()) {
+					statistic.setMin(transaction.getAmount());
+				}
 				
 				statistic.setSum( statistic.getSum() + transaction.getAmount() );
 				statistic.setCount( statistic.getCount() + 1);
@@ -148,7 +152,7 @@ public class StatisticServiceImpl implements StatisticService {
 	 * 
 	 */
 	@Override
-	public Statistic findCurrent() {
+	public Statistic getStatistic() {
 		
 		Long currentTimestamp = Util.converToTimeStamp(LocalDateTime.now());
 		
@@ -169,7 +173,7 @@ public class StatisticServiceImpl implements StatisticService {
 	 * 
 	 */
 	@Override
-	public List<Statistic> findAll() {
+	public List<Statistic> getAllStatistics() {
 		
 		List<Statistic> result = new ArrayList<Statistic>(this.statisticHistory.values());
 		

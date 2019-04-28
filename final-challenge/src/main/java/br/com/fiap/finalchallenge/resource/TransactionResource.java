@@ -35,7 +35,7 @@ public class TransactionResource {
 	@RequestMapping(value = "/saveTransaction", method = RequestMethod.POST)
 	public ResponseEntity<String> saveTransaction(@Valid @NotNull @RequestBody TransactionPostJson bodyJson) {
 
-		if (Util.isValid(bodyJson.getTimestamp())) {
+//		if (Util.isValid(bodyJson.getTimestamp())) {
 
 			try {
 				transactionService.saveTransaction(bodyJson);
@@ -47,9 +47,9 @@ public class TransactionResource {
 			}
 
 			return new ResponseEntity<String>(HttpStatus.valueOf(201));
-		} else {
-			return new ResponseEntity<String>(HttpStatus.valueOf(204));
-		}
+//		} else {
+//			return new ResponseEntity<String>(HttpStatus.valueOf(204));
+//		}
 
 	}
 

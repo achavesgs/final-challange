@@ -20,8 +20,8 @@ public class StatisticResource {
 	StatisticService statisticService;
 
 	@RequestMapping(value = "/getStatistic", method = RequestMethod.GET)
-	public ResponseEntity<Statistic> getStatistic(List<Transaction> transactions) {
-		Statistic statistic = this.statisticService.findCurrent();
+	public ResponseEntity<Statistic> getStatistic() {
+		Statistic statistic = this.statisticService.getStatistic();
 
 		ResponseEntity<Statistic> response = new ResponseEntity<Statistic>(statistic, HttpStatus.OK);
 
@@ -31,7 +31,7 @@ public class StatisticResource {
 	@RequestMapping(value = "/getAllStatistics", method = RequestMethod.GET)
 	public ResponseEntity<List<Statistic>> getAllStatistics() {
 		
-		List<Statistic> statistics = this.statisticService.findAll();
+		List<Statistic> statistics = this.statisticService.getAllStatistics();
 		
 		ResponseEntity<List<Statistic>> response = new ResponseEntity<List<Statistic>>(statistics, HttpStatus.OK);
 		

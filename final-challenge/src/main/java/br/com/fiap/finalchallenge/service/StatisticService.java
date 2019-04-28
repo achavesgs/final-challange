@@ -10,8 +10,8 @@ import br.com.fiap.finalchallenge.model.Transaction;
 
 public interface StatisticService {
 	
-	public List<Statistic> findAll();
-	public Statistic findCurrent();
+	public List<Statistic> getAllStatistics();
+	public Statistic getStatistic();
 	
 	public void add(Transaction transaction) throws TransactionExpiredException, TransactionOutOfFutureWindow;
 	
