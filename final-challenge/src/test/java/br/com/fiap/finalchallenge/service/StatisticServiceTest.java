@@ -26,7 +26,7 @@ public class StatisticServiceTest {
 
 	@Value("${statisticService.windowInMs}")
 	private Long windowInMs;
-	
+
 	SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
 	@Test(expected = TransactionExpiredException.class)
@@ -58,7 +58,6 @@ public class StatisticServiceTest {
 
 		Statistic statistic = this.statisticService.getStatistic();
 		Assert.assertEquals(currentDate, statistic.getDate());
-		// Assert.assertEquals(Long.valueOf(0l), statistic.getCount());
 	}
 
 	@Test
@@ -93,11 +92,12 @@ public class StatisticServiceTest {
 
 		Statistic statistic = this.statisticService.getStatistic();
 		Assert.assertEquals(currentDate, statistic.getDate());
-		// Assert.assertEquals(Long.valueOf(4l), statistic.getCount());
-		// Assert.assertEquals(Double.valueOf(5.0), statistic.getMin());
-		// Assert.assertEquals(Double.valueOf(50.0), statistic.getMax());
-		// Assert.assertEquals(Double.valueOf(85.0), statistic.getSum());
-		// Assert.assertEquals(Double.valueOf(21.25), statistic.getAvg());
+		Assert.assertEquals(currentDate, statistic.getDate());
+		Assert.assertEquals(Long.valueOf(4l).toString(), statistic.getCount());
+		Assert.assertEquals(Double.valueOf(5.0).toString(), statistic.getMin());
+		Assert.assertEquals(Double.valueOf(50.0).toString(), statistic.getMax());
+		Assert.assertEquals(Double.valueOf(85.0).toString(), statistic.getSum());
+		Assert.assertEquals(Double.valueOf(21.25).toString(), statistic.getAvg());
 	}
 
 }

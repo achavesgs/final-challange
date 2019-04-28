@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class Statistic {
 	
-	@ApiModelProperty( notes = "The statisti date")
+	@ApiModelProperty( notes = "The statistic date")
 	private LocalDateTime date;
 	
 	@ApiModelProperty( notes = "The transaction total sum")
