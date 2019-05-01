@@ -107,7 +107,7 @@ public class StatisticServiceImpl implements StatisticService {
 		Long transactionTimestamp = transaction.getTimestamp(); //Util.converToTimeStamp(transaction.getDate());
 		
 		if (transactionTimestamp + windowInMs < currentTimestamp) throw new TransactionExpiredException();
-//		if (currentTimestamp + windowInMs < transactionTimestamp) throw new TransactionOutOfFutureWindow();
+		if (currentTimestamp + windowInMs < transactionTimestamp) throw new TransactionOutOfFutureWindow();
 		
 		synchronized(LOCK) {
 			
