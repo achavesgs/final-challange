@@ -10,12 +10,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.fiap.finalchallenge.exception.TransactionExpiredException;
 import br.com.fiap.finalchallenge.exception.TransactionOutOfFutureWindow;
 import br.com.fiap.finalchallenge.model.Statistic;
 import br.com.fiap.finalchallenge.model.Transaction;
+import br.com.fiap.finalchallenge.reprository.StatisticRepository;
 import br.com.fiap.finalchallenge.util.Util;
 
 @SpringBootTest
@@ -24,6 +26,9 @@ public class StatisticServiceTest {
 
 	@Autowired
 	private StatisticService statisticService;
+	
+	@MockBean
+	StatisticRepository repository;
 
 	@Value("${statisticService.windowInMs}")
 	private Long windowInMs;

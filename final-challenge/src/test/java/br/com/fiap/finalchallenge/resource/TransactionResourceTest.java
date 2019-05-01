@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 @WebMvcTest(FinalChallengeApplication.class)
 @RunWith(SpringRunner.class)
-public class TransactionControllerTest {
+public class TransactionResourceTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -38,7 +38,7 @@ public class TransactionControllerTest {
 		 this.mockMvc.perform(post("/transactions")
 		.contentType("application/json;charset=UTF-8")
 		.content(json.toString())
-		.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated())
 		.andExpect(content().contentType("application/json;charset=UTF-8"));
 	}
